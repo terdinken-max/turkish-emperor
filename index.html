@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TERDINKEN | Turkish Emperor</title>
+    <title>TERDINKEN | Turkish Kebab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
 
@@ -25,7 +25,7 @@
         }
 
         /* TURKISH KEBAB YAY YAZI */
-        .kebab-arc {
+        .emperor-arc {
             position: absolute; top: 5%; width: 100%; height: 300px;
             z-index: 2; pointer-events: none;
         }
@@ -58,7 +58,6 @@
             text-align: center;
             transition: 0.2s;
         }
-        /* Tabela üzerine gelince de hafif titresin */
         .wooden-sign:hover {
             animation: shake 0.5s infinite;
         }
@@ -84,7 +83,6 @@
             cursor: pointer; transition: 0.3s;
             font-family: 'Cinzel Decorative', cursive;
         }
-        /* BUTON TİTREME */
         .gold-btn:hover {
             animation: shake 0.5s infinite;
             background: #DAA520;
@@ -94,7 +92,6 @@
 
         .socials { z-index: 10; margin-top: 30px; display: flex; gap: 20px; }
         .socials a { color: #DAA520; font-size: 30px; transition: 0.3s; }
-        /* İKONLAR TİTREME */
         .socials a:hover {
             animation: shake 0.5s infinite;
             color: white;
@@ -112,18 +109,18 @@
     <div class="emperor-arc">
         <svg viewBox="0 0 1000 300">
             <path id="curve" d="M 100,250 A 400,150 0 0,1 900,250" fill="transparent" />
-            <text><textPath xlink:href="#curve" startOffset="50%" text-anchor="middle" font-size="60">TURKISH EMPEROR</textPath></text>
+            <text><textPath xlink:href="#curve" startOffset="50%" text-anchor="middle" font-size="60">TURKISH KEBAB</textPath></text>
         </svg>
     </div>
 
     <div class="wooden-sign">
-        <h1>EMPIRE</h1>
+        <h1>KEBAB</h1>
     </div>
     
-    <div class="sub-text">BEGIN REIGN</div>
+    <div class="sub-text">ORDER NOW</div>
 
     <button class="gold-btn" onclick="window.open('https://www.youtube.com/watch?v=I-MSviG32kE', '_blank')">
-        ENTER DOMAIN <i class="fa-solid fa-gem"></i>
+        ENTER KITCHEN <i class="fa-solid fa-fire"></i>
     </button>
 
     <div class="socials">
@@ -133,12 +130,10 @@
     </div>
 
     <script>
-        // Müzik kontrol
         document.body.addEventListener('click', () => {
             document.getElementById('bgMusic').play();
         }, { once: true });
 
-        // Kar Efekti Scripti
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
