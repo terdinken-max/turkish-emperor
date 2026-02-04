@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TERDINKEN | Turkish Emperor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+
+    <style>
+        /* ALTIN İMLEÇ */
+        * { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="%23FFD700" stroke="white" stroke-width="2"/></svg>') 12 12, auto !important; }
+
+        body {
+            margin: 0; padding: 0; background: #050505;
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            overflow: hidden; font-family: 'Cinzel Decorative', cursive;
+        }
+
+        /* KAR YAĞIŞI ARKA PLAN */
+        #snow-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1a0033 0%, #000 100%);
+            z-index: 1;
+        }
+
+        /* TURKISH EMPEROR YAY YAZI */
+        .emperor-arc {
+            position: absolute; top: 5%; width: 100%; height: 300px;
+            z-index: 2; pointer-events: none;
+        }
+        .emperor-arc svg { width: 100%; height: 100%; fill: rgba(255, 215, 0, 0.2); }
+
+        /* TİTREME ANİMASYONU (SHAKE) */
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        /* AHŞAP TABELA */
+        .wooden-sign {
+            z-index: 10;
+            background: linear-gradient(145deg, #3d2616, #21130a);
+            border: 4px solid #1a0f08;
+            padding: 20px 60px;
+            border-radius: 4px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            transform: rotate(-1deg);
+            text-align: center;
+            transition: 0.2s;
+        }
+        /* Tabela üzerine gelince de hafif titresin */
+        .wooden-sign:hover {
+            animation: shake 0.5s infinite;
+        }
+
+        .wooden-sign h1 {
+            color: #DAA520;
+            font-family: 'IM Fell English SC', serif;
+            font-size: 80px; margin: 0;
+            letter-spacing: 15px;
+            text-shadow: 3px 3px 0px #000;
+        }
+
+        /* ALT YAZI VE BUTON */
+        .sub-text {
+            z-index: 10; color: #DAA520; margin-top: 20px;
+            font-size: 20px; letter-spacing: 5px; opacity: 0.8;
+        }
+
+        .gold-btn {
+            z-index: 10; margin-top: 40px;
+            padding: 15px 45px; background: transparent;
+            color: #DAA520; border: 1px solid #DAA520;
+            cursor: pointer; transition: 0.3s;
+            font-family: 'Cinzel Decorative', cursive;
+        }
+        /* BUTON TİTREME */
+        .gold-btn:hover {
+            animation: shake 0.5s infinite;
+            background: #DAA520;
+            color: #000;
+            box-shadow: 0 0 30px #DAA520;
+        }
+
+        .socials { z-index: 10; margin-top: 30px; display: flex; gap: 20px; }
+        .socials a { color: #DAA520; font-size: 30px; transition: 0.3s; }
+        /* İKONLAR TİTREME */
+        .socials a:hover {
+            animation: shake 0.5s infinite;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="snow-canvas"></canvas>
+
+    <audio id="bgMusic" loop>
+        <source src="https://archive.org/download/TheStranglersGoldenBrown/The%20Stranglers%20-%20Golden%20Brown.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="emperor-arc">
+        <svg viewBox="0 0 1000 300">
+            <path id="curve" d="M 100,250 A 400,150 0 0,1 900,250" fill="transparent" />
+            <text><textPath xlink:href="#curve" startOffset="50%" text-anchor="middle" font-size="60">TURKISH EMPEROR</textPath></text>
+        </svg>
+    </div>
+
+    <div class="wooden-sign">
+        <h1>EMPIRE</h1>
+    </div>
+    
+    <div class="sub-text">BEGIN REIGN</div>
+
+    <button class="gold-btn" onclick="window.open('https://www.youtube.com/watch?v=I-MSviG32kE', '_blank')">
+        ENTER DOMAIN <i class="fa-solid fa-gem"></i>
+    </button>
+
+    <div class="socials">
+        <a href="#"><i class="fa-brands fa-discord"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+
+    <script>
+        // Müzik kontrol
+        document.body.addEventListener('click', () => {
+            document.getElementById('bgMusic').play();
+        }, { once: true });
+
+        // Kar Efekti Scripti
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Snowflake {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speed = Math.random() * 1 + 0.5;
+                this.velX = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.y += this.speed;
+                this.x += this.velX;
+                if (this.y > canvas.height) {
+                    this.y = -10;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 200; i++) particles.push(new Snowflake());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
